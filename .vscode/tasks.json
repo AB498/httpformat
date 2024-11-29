@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "vscode:prepublish",
+			"problemMatcher": [],
+			"label": "npm: vscode:prepublish",
+			"detail": "npm run esbuild-base && javascript-obfuscator ./out/core.js --output=./out/core.js --target=node --split-strings=true"
+		}
+	]
+}

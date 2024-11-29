@@ -1,0 +1,95 @@
+{
+  "publisher": "498",
+  "name": "httpformat",
+  "displayName": "HTTP Format - Formatter for plaintext .txt .http files With Standard REST Requests",
+  "description": "Format your REST HTTP Client files with a single command. A very fast JSON and HTTP Format Prettier.",
+  "version": "1.0.38",
+  "icon": "imgs/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AB498/httpformat"
+  },
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "keywords": [
+    "format",
+    "formatter",
+    "http",
+    "rest",
+    "https",
+    "formatting",
+    "style",
+    "prettier",
+    "rest client"
+  ],
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:http",
+    "workspaceContains:**/*.http"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "http",
+        "extensions": [
+          ".http",
+          ".rest"
+        ],
+        "aliases": [
+          "HTTP",
+          "http"
+        ]
+      },
+      {
+        "id": "plaintext",
+        "extensions": [
+          ".txt"
+        ],
+        "aliases": [
+          "plaintext"
+        ]
+      }
+    ],
+    "formatters": [
+      {
+        "language": "plaintext",
+        "selector": "source.plaintext",
+        "id": "httpformat-formatter",
+        "title": "HTTP Format Formatter",
+        "default": true
+      },
+      {
+        "language": "http",
+        "selector": "source.http",
+        "id": "httpformat-formatter",
+        "title": "HTTP Format Formatter",
+        "default": true
+      }
+    ]
+  },
+  "scripts": {
+    "esbuild-base": "esbuild --minify --bundle ./src/*.js --outdir=./out --platform=node --external:vscode",
+    "vscode:prepublish": "npm run esbuild-base",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.0.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.13.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
