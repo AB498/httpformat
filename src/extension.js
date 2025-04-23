@@ -23,7 +23,7 @@ function activate(context) {
 
 					if (text.replace(/[\s\n\r\t]/g, '') != formattedText.replace(/[\s\n\r\t]/g, '')) {
 						console.log('likely corrupted');
-						vscode.window.showInformationMessage("HTTP Format: Detected Inconsitent Format, Are you sure its a HTTP File? Else Likely an Issue with the Formatter. Please Report to Developer for Fix.");
+						vscode.window.showInformationMessage("HTTP Format: Failed to format. File is too complex.");
 						return [];
 					}
 
