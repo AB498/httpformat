@@ -10,12 +10,11 @@ let extensionPath = path.join(__dirname, "..");
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	global.globalVars.context = context;
 	extensionPath = context.extensionPath;
 
 	(async () => {
 
-		['http', 'plaintext'].forEach((lang) => {
+		['http', 'rest', 'plaintext'].forEach((lang) => {
 			context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider(lang, {
 				provideDocumentFormattingEdits(document, options, token) {
 					text = document.getText().trim() + "\n";
@@ -24,7 +23,7 @@ function activate(context) {
 
 					if (text.replace(/[\s\n\r\t]/g, '') != formattedText.replace(/[\s\n\r\t]/g, '')) {
 						console.log('likely corrupted');
-						// vscode.window.showInformationMessage("HTTP Format: Detected Inconsitent Format, Are you sure its a HTTP File? Else Likely an Issue with the Formatter. Please Report to Developer for Fix.");
+						vscode.window.showInformationMessage("HTTP Format: Detected Inconsitent Format, Are you sure its a HTTP File? Else Likely an Issue with the Formatter. Please Report to Developer for Fix.");
 						return [];
 					}
 

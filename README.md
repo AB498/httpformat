@@ -1,6 +1,6 @@
 # HTTP Format - REST HTTP TEXT FORMATTER
 
-Format `.http`, `.rest`, and `.txt` files with one keystroke `win+shift+f` (windows) or `cmd+shift+f` (macOS).
+Format `.http`, `.rest`, and `.txt` files with one keystroke `alt+shift+f` (windows) or `cmd+shift+f` (macOS).
 
 <div style="text-align:center;font-family: monospace; display: flex; align-items: center; justify-content: center; width: 100%; gap: 10px">
         <a href="https://discord.gg/ZeeqSBpjU2"><img src="https://img.shields.io/discord/1095854826786668545" alt="Discord"></a>
@@ -17,11 +17,11 @@ Format `.http`, `.rest`, and `.txt` files with one keystroke `win+shift+f` (wind
 ## Usage
 
 1. Open a file with extensions like `.http`, `.rest`, and `.txt`.
-2. Press `win+shift+f` (windows) or `cmd+shift+f` (macOS) to format the file.
+2. Press `alt+shift+f` (windows) or `cmd+shift+f` (macOS) to format the file.
 
 ## Features
 
-- **Zero Configuration**: Simply open a file and press `win+shift+f` (windows) or `cmd+shift+f` (macOS) to format the file.
+- **Zero Configuration**: Simply open a file and press `alt+shift+f` (windows) or `cmd+shift+f` (macOS) to format the file.
 - **Customizable Styles**: Look into settings to customize the formatting style.
 
 ---
