@@ -12,6 +12,11 @@ let extensionPath = path.join(__dirname, "..");
 function activate(context) {
 	extensionPath = context.extensionPath;
 
+	// create output channel
+	let outputChannel = vscode.window.createOutputChannel("HTTP Format");
+	outputChannel.appendLine('HTTP Format extension activated'); // Add this line to test
+
+
 	(async () => {
 
 		['http', 'rest', 'plaintext'].forEach((lang) => {
@@ -22,16 +27,23 @@ function activate(context) {
 					const [formattedText, error] = format(text);
 
 					if (text.replace(/[\s\n\r\t]/g, '') != formattedText.replace(/[\s\n\r\t]/g, '')) {
-						console.log('likely corrupted');
+						outputChannel.appendLine('Content corrupted after formatting. Not applying changes.');
 						vscode.window.showInformationMessage("HTTP Format: Failed to format. File is too complex.");
 						return [];
 					}
 
-					if (error || !formattedText) {
-						console.log('error', error);
+					// if before and after are the same, log that nothing changed
+					if (text.trim() === formattedText.trim()) {
+						outputChannel.appendLine('Content before and after are the same. Format had no effect.');
 						return [];
 					}
 
+					if (error || !formattedText) {
+						outputChannel.appendLine('Error: ' + error);
+						return [];
+					}
+
+					outputChannel.appendLine('Formatting successful.');
 					return [
 						vscode.TextEdit.replace(
 							new vscode.Range(0, 0, document.lineCount, 0),

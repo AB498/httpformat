@@ -3,7 +3,7 @@
   "name": "httpformat",
   "displayName": "HTTP Format - Formatter for plaintext .txt .http files With Standard REST Requests",
   "description": "Format your REST HTTP Client files with a single command. A very fast JSON and HTTP Format Prettier.",
-  "version": "1.0.41",
+  "version": "1.0.43",
   "icon": "imgs/icon.png",
   "repository": {
     "type": "git",
@@ -74,7 +74,7 @@
     ]
   },
   "scripts": {
-    "esbuild-base": "esbuild --minify --bundle ./src/*.js --outdir=./out --platform=node --external:vscode",
+    "esbuild-base": "npx -y esbuild --minify --bundle ./src/*.js --outdir=./out --platform=node --external:vscode",
     "vscode:prepublish": "npm run esbuild-base",
     "lint": "eslint .",
     "pretest": "npm run lint",
