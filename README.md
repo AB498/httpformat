@@ -42,7 +42,3 @@ Nothing needed.
 
 - [Email (abcd49800@gmail.com)](mailto:abcd49800@gmail.com)
 - [Discord (CodePlayground)](https://discord.gg/ZeeqSBpjU2)
-
----
-
-**Enjoy!**
