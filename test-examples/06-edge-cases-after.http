@@ -1,0 +1,84 @@
+# Edge Cases - BEFORE formatting
+
+# Unicode and Special Characters
+
+POST https://api.example.com/unicode HTTP/1.1
+Content-Type: application/json
+
+{
+    "message": "Hello 世界! 🌍",
+    "emoji": "😀😃😄😁",
+    "chinese": "你好",
+    "japanese": "こんにちは",
+    "arabic": "مرحبا",
+    "special": "quotes\"and\\backslashes"
+}
+
+###
+
+# Query Parameters
+
+GET https://api.example.com/search?q=hello%20world&filter=type%3Duser&sort=created&order=desc&page=1&limit=50 HTTP/1.1
+Accept: application/json
+
+###
+
+# Complex Headers
+
+POST https://api.example.com/data HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Accept: application/json
+User-Agent: MyApp/1.0 (Windows NT 10.0; Win64; x64)
+X-Custom-Header: custom-value-with-special-chars!@#$%^&*()
+Cache-Control: no-cache, no-store, must-revalidate
+Connection: keep-alive
+
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Item 1",
+            "tags": [
+                "tag1",
+                "tag2"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Item 2",
+            "tags": [
+                "tag3",
+                "tag4"
+            ]
+        }
+    ],
+    "metadata": {
+        "total": 2,
+        "page": 1,
+        "hasMore": false
+    }
+}
+
+###
+
+# Malformed JSON (should be preserved as-is)
+
+POST https://api.example.com/malformed HTTP/1.1
+Content-Type: application/json
+
+{"name":"John","email":,"age":}
+
+###
+
+# Request without HTTP version
+
+GET https://example.com/simple
+Accept: text/plain
+
+###
+
+# Empty body request
+
+DELETE https://api.example.com/users/123 HTTP/1.1
+Authorization: Bearer {{token}}

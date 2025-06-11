@@ -1,0 +1,76 @@
+@hostname = api.example.com
+@port = 8080
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@createdAt ={{$datetime iso8601}}
+@modifiedBy= {{$processEnv USERNAME}}
+
+# @name getUserBalance
+### Sample GET request
+
+https://www.example.com/api/v2/user/balance?user=mainuser&site-key=somekey 
+X-API-ID: key1
+X-API-KEY: key2
+
+# @name getUserList
+### Sample GET request
+
+https://www.example.com/api/v2/user/list?site-key=somekey
+X-API-ID: key1
+X-API-KEY: key2
+
+# @name withdrawFunds
+### Sample POST request with query params
+
+POST https://www.example.com/api/v2/user/withdraw?site-key=somekey&user=mainuser&amount=1 
+Content-Type: application/json
+X-API-ID: key1
+X-API-KEY: key2
+
+{
+    "site-key": "somekey",
+    "user": "anonymous",
+    "amount": 1
+}
+
+### Sample GET request
+
+GET https://jsonplaceholder.typicode.com/posts/1 
+Accept: application/json
+
+###
+
+### Sample POST request
+
+POST https://jsonplaceholder.typicode.com/posts 
+Content-Type: application/json
+
+{
+    "title": "foo",
+    "body": "bar",
+    "userId": 1
+}
+
+###
+
+### Sample PUT request
+
+PUT https://jsonplaceholder.typicode.com/posts/1 
+Content-Type: application/json
+
+{
+    "id": 1,
+    "title": "foo",
+    "body": "bar",
+    "userId": 1
+}
+
+###
+
+### Sample DELETE request
+
+DELETE https://jsonplaceholder.typicode.com/posts/1
+
+###
+
+###

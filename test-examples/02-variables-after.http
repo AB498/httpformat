@@ -1,0 +1,14 @@
+# Variables - BEFORE formatting
+@hostname = api.example.com
+@port = 8080
+@host = {{hostname}}:{{port}}
+@timestamp = {{$timestamp}}
+@guid = {{$guid}}
+@datetime = {{$datetime iso8601}}
+@apiKey = {{$processEnv API_KEY}}
+@dotenvVar = {{$dotenv DATABASE_URL}}
+
+GET {{host}}/users HTTP/1.1
+X-API-Key: {{apiKey}}
+X-Request-ID: {{guid}}
+X-Timestamp: {{timestamp}}

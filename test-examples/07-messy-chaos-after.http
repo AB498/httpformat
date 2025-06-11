@@ -1,0 +1,118 @@
+# Completely messed up file - BEFORE formatting
+@baseUrl = https://api.example.com
+@port = 8080
+@host = {{baseUrl}}:{{port}}
+# This is a comment with weird spacing
+//Another comment
+# @name    messyLogin
+
+POST {{host}}/auth/login HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer    token123
+User-Agent: MyApp/1.0
+X-Custom-Header: custom-value
+
+{
+    "username": "admin",
+    "password": "secret123",
+    "nested": {
+        "key1": "value1",
+        "key2": "value2",
+        "array": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+}
+
+###
+
+# Another messy comment
+
+GET {{host}}/users
+Accept: application/json
+
+###
+
+// Multipart mess
+
+POST {{host}}/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW   
+Content-Disposition   :   form-data; name="file"; filename="test.txt"   
+Content-Type   :   text/plain   
+
+   File content with spaces   
+------WebKitFormBoundary7MA4YWxkTrZu0gW   
+Content-Disposition   :   form-data; name="description"   
+
+   Test description   
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+@timestamp = {{$timestamp}}
+@guid = {{$guid}}
+@randomNum = {{$randomInt 1 100}}
+# GraphQL with messy formatting
+
+POST {{host}}/graphql HTTP/1.1
+Authorization: Bearer   {{token}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{
+    "query": "query GetUser($id: ID!) { user(id: $id) { name email posts { title } } }",
+    "variables": {
+        "id": "123"
+    }
+}
+
+###
+
+// URL with messy query params
+
+GET {{host}}/search ?q=test&type=user&sort=nameHTTP/1.1
+Accept: application/json
+
+###
+
+# Malformed JSON with extra spaces
+
+POST {{host}}/malformed HTTP/1.1
+Content-Type: application/json
+
+{   "name"   :   "John"   ,   "email"   :   ,   "age"   :   }
+
+###
+
+# Unicode mess
+
+POST {{host}}/unicode HTTP/1.1
+Content-Type: application/json
+
+{
+    "message": "Hello 世界! 🌍",
+    "emoji": "😀😃😄😁",
+    "special": "quotes\"and\\backslashes"
+}
+
+###
+
+# File reference with spaces
+
+POST {{host}}/import HTTP/1.1
+Content-Type: application/json
+
+<@   ./data/import.json
+
+###
+
+# Final request without version
+
+DELETE {{host}}/cleanup
+Authorization: Bearer   {{token}}

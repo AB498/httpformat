@@ -1,0 +1,100 @@
+# Comprehensive HTTP Format Showcase - BEFORE formatting
+@baseUrl=https://api.example.com
+@apiKey={{$processEnv API_KEY}}
+@userId=12345
+@timestamp={{$timestamp}}
+@guid={{$guid}}
+
+# Authentication endpoint
+# @name login
+POST {{baseUrl}}/auth/login HTTP/1.1
+Content-Type: application/json
+User-Agent: MyApp/1.0
+X-API-Key: {{apiKey}}
+
+{"username":"admin","password":"secret","timestamp":"{{timestamp}}","deviceId":"{{guid}}"}
+
+###
+
+// Get user profile using token from login
+# @name getUserProfile  
+GET {{baseUrl}}/users/{{userId}} HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Accept: application/json
+Cache-Control: no-cache
+
+###
+
+# Update user profile with nested JSON
+PUT {{baseUrl}}/users/{{userId}} HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: application/json
+
+{"firstName":"John","lastName":"Doe","email":"john.doe@example.com","preferences":{"theme":"dark","notifications":true,"language":"en-US"},"address":{"street":"123 Main St","city":"Anytown","state":"CA","zipCode":"12345","country":"USA"}}
+
+###
+
+// Upload user avatar with multipart form
+POST {{baseUrl}}/users/{{userId}}/avatar HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="profile.jpg"
+Content-Type: image/jpeg
+
+< ./assets/profile.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+User profile picture
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# GraphQL query for user data
+POST {{baseUrl}}/graphql HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{"query":"query GetUser($id: ID!) { user(id: $id) { name email posts(first: 10) { title content createdAt updatedAt tags } followers { count } following { count } } }","variables":{"id":"{{userId}}"}}
+
+###
+
+// Search with complex query parameters
+GET {{baseUrl}}/search?q=javascript&type=repositories&sort=stars&order=desc&page=1&per_page=50&language=javascript HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Accept: application/json
+
+###
+
+# Batch operation with array data
+POST {{baseUrl}}/batch HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: application/json
+
+[{"operation":"create","type":"user","data":{"name":"User 1","email":"user1@example.com"}},{"operation":"update","type":"user","id":"123","data":{"name":"Updated User"}},{"operation":"delete","type":"user","id":"456"}]
+
+###
+
+// Unicode and special characters test
+POST {{baseUrl}}/unicode HTTP/1.1
+Content-Type: application/json
+
+{"message":"Hello 世界! 🌍","emoji":"😀😃😄😁","chinese":"你好","japanese":"こんにちは","arabic":"مرحبا","special":"quotes\"and\\backslashes","unicode":"\u0048\u0065\u006C\u006C\u006F"}
+
+###
+
+# File reference example
+POST {{baseUrl}}/import HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: application/json
+
+<@ ./data/import-data.json
+
+###
+
+# @name logout
+POST {{baseUrl}}/auth/logout HTTP/1.1
+Authorization: Bearer {{login.response.body.access_token}}

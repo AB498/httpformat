@@ -1,0 +1,32 @@
+# Comments - BEFORE formatting
+# This is a standard comment
+// This is an alternative comment style
+# @name getUserInfo
+// @prompt username Your username
+# TODO: Add authentication
+// FIXME: Update endpoint URL
+
+GET https://example.com/user HTTP/1.1
+Accept: application/json
+
+###
+
+# @name createUser
+
+POST https://example.com/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "New User"
+}
+
+###
+
+// @name updateUser
+
+PUT https://example.com/users/123 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Updated User"
+}

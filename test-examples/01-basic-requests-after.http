@@ -1,0 +1,23 @@
+# Basic HTTP requests - BEFORE formatting
+
+GET https://example.com
+
+###
+
+GET https://example.com HTTP/1.1
+
+###
+
+POST https://api.example.com/users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer token123
+
+{
+    "name": "John",
+    "email": "john@example.com",
+    "age": 30,
+    "preferences": {
+        "theme": "dark",
+        "notifications": true
+    }
+}

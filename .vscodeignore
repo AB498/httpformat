@@ -1,6 +1,8 @@
 .vscode/**
 .vscode-test/**
 test/**
+test-examples/**
+_test/**
 src/**
 .gitignore
 .yarnrc
@@ -11,4 +13,8 @@ vsc-extension-quickstart.md
 **/.vscode-test.*
 node_modules/**
 lib/**
+*.vsix
+compare-examples.js
+create-before-after-examples.js
+package-lock.json
 

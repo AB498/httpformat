@@ -1,0 +1,51 @@
+# Complex Data Types - BEFORE formatting
+
+# GraphQL Query
+POST https://api.github.com/graphql HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{"query":"query($login:String!){user(login:$login){repositories(first:10){nodes{name description stargazerCount}}}}","variables":{"login":"octocat"}}
+
+###
+
+# Multipart Form Data
+POST https://api.example.com/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="test.txt"
+Content-Type: text/plain
+
+< ./test-files/sample.txt
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Test file upload
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# URL-encoded Form Data
+POST https://api.example.com/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=john&password=secret123&remember=true&redirect_url=https%3A%2F%2Fexample.com%2Fdashboard
+
+###
+
+# XML/SOAP Request
+POST https://api.example.com/soap HTTP/1.1
+Content-Type: application/xml
+SOAPAction: "http://example.com/GetUserInfo"
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><GetUserInfo><UserId>123</UserId><IncludeDetails>true</IncludeDetails></GetUserInfo></soap:Body></soap:Envelope>
+
+###
+
+# File Reference
+POST https://api.example.com/upload HTTP/1.1
+Content-Type: application/json
+
+<@ ./test-data.json
